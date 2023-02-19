@@ -13,24 +13,30 @@
         <h1 class="h1">Weather Dashboard</h1>
     </header>
     <main>
-        <div class="row">
-            <div class="col-12 col-md-4 col-lg-4">
+        <div class="row search mx-3">
+            <div class="col-12 col-md-3 col-lg-3">
                 <h3>Search for a City:</h3>
                 <input class="btn btn-light" type="text" name="City" id="citySearch">
                 <button class="btn btn-primary" style="--bs-btn-padding-x: 5rem" type="submit">Search</button>
-                <ul>
-                    <li>City Name</li>
-                </ul>
             </div>
        
-            <div class="col 12 col-md-8 col-lg-8">
-                <div classs="current-city">Current City and Weather</div>
-                <h3>5-Day Forcast</h3>
-                <div>card forecast</div>
-                <div>card forecast</div>
-                <div>card forecast</div>
-                <div>card forecast</div>
-                <div>card forecast</div>
+            <div class="col 12 col-md-9 col-lg-9 box">
+                <div classs=>Current City and Weather</div>
+        </div>
+        <div class="row">   
+            <div class="col-12 col-md-3 col-lg-3">
+                <h3>City List</h3>
+                <ul class="list">
+                    <li #="storedCities"></li>
+                </ul> 
+            </div>
+            <div class="col-12 col-md-9 col-lg-9">
+                    <h3>5-Day Forcast</h3>
+                    <div>card forecast</div>
+                    <div>card forecast</div>
+                    <div>card forecast</div>
+                    <div>card forecast</div>
+                    <div>card forecast</div>
             </div>
         </div>
     </main>
