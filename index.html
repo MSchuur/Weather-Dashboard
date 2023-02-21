@@ -5,6 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css"> 
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css">
     <link rel="stylesheet" href="./assets/css/style.css">
     <title>Weather Dashboard</title>
 </head>
@@ -13,24 +14,27 @@
         <h1 class="h1">Weather Dashboard</h1>
     </header>
     <main>
-        <div class="row search mx-3">
-            <div class="col-12 col-md-3 col-lg-3">
-                <h3 class="mt-5">Search for a City:</h3>
-                <input class="btn btn-light" type="text" name="City" id="citySearch">
-                <button class="btn btn-primary" style="--bs-btn-padding-x: 5rem" type="submit">Search</button>
+        <div class="row mx-3">
+            <div class="card text-bg-info col-12 col-md-4">
+                <h3 class="card-header text-uppercase">Search By City</h3>
+                <form id="user-form" class="card-body">
+                  <label class="form-label" for="username">City</label>
+                  <input name="username" id="username" type="text" autofocus="true" class="form-input mb-3" placeholder="Enter city Name"/>
+                  <button type="submit" class="btn btn-primary">Submit</button>
+                </form>
             </div>
        
-            <div class="col 12 col-md-9 col-lg-9 box">
+            <div class="col 12 col-md-8 col-lg-8 box">
                 <div classs=>Current City and Weather</div>
         </div>
         <div class="row">   
-            <div class="col-12 col-md-3 col-lg-3">
+            <div class="col-12 col-md-4 col-lg-4">
                 <h3>City List</h3>
                 <ul class="list">
                     <li #="storedCities"></li>
                 </ul> 
             </div>
-            <div class="col-12 col-md-9 col-lg-9">
+            <div class="col-12 col-md-8 col-lg-8">
                     <h3>5-Day Forcast</h3>
                     <div class="row">
                         <div class="col " style="width: 6rem">card forecast</div>
@@ -42,6 +46,7 @@
             </div>
         </div>
     </main>
-    <script> src="./assets/js/script.js "</script>
+    
+    <script src="./assets/js/script.js"></script>
 </body>
 </html>
