@@ -1,20 +1,56 @@
 // Varibles requied for the app
 var searchCityEl = document.querySelector('#user-form');
 var cityInputEl = document.querySelector('#cityname');
+var cityList = document.querySelector('#storedCities');
+var cityCounter = 0
 
 
-var lat = 0;
-var lon = 0;
+// Render city names for storage
+var renderCities = function (city) {
+    
+    // city = city.charAt(0).toUpperCase() + city.slice(1);
+    
+    console.log(city);
+
+    // if (name === storeCities) {
+    //     return;
+    // }
+    // else {
+    //    localStorage.setItem(name, cities) 
+    // }
+
+
+
+}
+
+// This function is upon launch and loads locally stored city names
+
+// var init = function () {
+//     var storedCities = JSON.parse(localStorage.getItem('cities'));
+
+//     if  (storedCities !==null) {
+//         cities = storedCities;
+//     }
+//     renderCities();
+// }
+
+// var storeCities = function() {
+//     localStorage.setItem('cities', JSON.stringify(cities))
+// }
+
 
 
 // Search for a city and get the lat and long
 var formCityHandler = function(event) {
   event.preventDefault();
   var cityname = cityInputEl.value.trim();
+  cityname = cityname.charAt(0).toUpperCase() + cityname.slice(1);
     
   if (cityname) {
     getCurrentTemp(cityname);
     getFiveDayForecast(cityname);
+    renderCities(cityname);
+    
   }
   else {
     alert('The city name you entered is not valid. Please try again');
@@ -144,7 +180,6 @@ var displayForecastWeather = function(forecast) {
         // Create the Icon required for each card
         var forecastIcon = document.createElement('span');
 
-        console.log(forecast.list[i].weather[0].id);
         if (forecast.list[i].weather[0].id >= '200' && forecast.list[i].weather[0].id <= '299') {
             forecastIcon.innerHTML = "<i class='fas fa-poo-storm'></i>";
         } else if (forecast.list[i].weather[0].id >= '300' && forecast.list[i].weather[0].id <= '399') {
