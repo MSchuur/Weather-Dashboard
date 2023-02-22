@@ -9,23 +9,22 @@
     <link rel="stylesheet" href="./assets/css/style.css">
     <title>Weather Dashboard</title>
 </head>
-<body class="text-bg-info">
+<body class="text-bg-info container-body">
     <header class="container-fluid text-center mb 5 p-3">
         <h1 class="h1">Weather Dashboard</h1>
     </header>
     <main>
-        <div class="row mx-3">
+        <div class="row mx-3 first-row">
             <div class="card text-bg-info col-12 col-md-4">
                 <h3 class="card-header text-uppercase">Search By City</h3>
                 <form id="user-form" class="card-body">
-                  <label class="form-label" for="cityname">City</label>
-                  <input name="cityname" id="cityname" type="text" autofocus="true" class="form-input mb-3" placeholder="Enter city Name"/>
-                  <button type="submit" class="btn btn-primary">Submit</button>
+                    <label class="form-label" for="cityname">City</label>
+                    <input name="cityname" id="cityname" type="text" autofocus="true" class="form-input mb-3" placeholder="Enter city Name"/>
+                    <button type="submit" class="btn btn-primary">Submit</button>
                 </form>
             </div>
-       
-            <div class="col 12 col-md-8 col-lg-8 box">
-                <div classs=>Current City and Weather</div>
+            <div class="col 12 col-md-8 col-lg-8 box hidden" id="currentWeather" id="currentIcon">
+                
         </div>
         <div class="row">   
             <div class="col-12 col-md-4 col-lg-4">
