@@ -50,38 +50,27 @@ function displayCurrentWeather(weather) {
     
     var currentIcon = document.createElement('span');
     if (weather.weather[0].id >= '200' && weather.weather[0].id <= '299') {
-        currentIcon.innerHTML = "<i class='fa-regular fa-cloud-bolt'></i>";
+        currentIcon.innerHTML = "<i class='fas fa-poo-storm'></i>";
     } else if (weather.weather[0].id >= '300' && weather.weather[0].id <= '399') {
-        currentIcon.innerHTML = "<i class='fa-regular fa-cloud-drizzle'></i>";
-    } else if (weather.weather[0].id >= '500' && weather.weather[0].id <= '504') {
-        currentIcon.innerHTML = "<i class='fa-regular fa-cloud-rain'></i>";
-    } else if (weather.weather[0].id === '511') {
-        currentIcon.innerHTML = "<i class='fa-regular fa-cloud-hail-mixed'></i>";
-    } else if (weather.weather[0].id >= '520' && weather.weather[0].id <= '599') {
-        currentIcon.innerHTML = "<i class='fa-regular fa-cloud-showers-heavy'></i>";
-    } else if (weather.weather[0].id >= '300' && weather.weather[0].id <= '399') {
-        currentIcon.innerHTML = "<i class='fa-regular fa-cloud-drizzle'></i>";
+        currentIcon.innerHTML = "<i class='fas fa-cloud-rain'></i>";
+    } else if (weather.weather[0].id >= '500' && weather.weather[0].id <= '599') {
+        currentIcon.innerHTML = "<i class='fas fa-cloud-shower-heavy'></i>";
     } else if (weather.weather[0].id >= '600' && weather.weather[0].id <= '699') {
-        currentIcon.innerHTML = "<i class='fa-regular fa-snowflake'></i>";
+        currentIcon.innerHTML = "<i class='fas fa-snowflake'></i>";
     } else if (weather.weather[0].id >= '700' && weather.weather[0].id <= '799') {
-        currentIcon.innerHTML = "<i class='fa-regular fa-cloud-fog'></i>";
-    } else if (weather.weather[0].id = '800') {
-        currentIcon.innerHTML = "<i class='fa-regular fa-sun'></i>";
-    } else if (weather.weather[0].id === '801' || weather.weather[0].id === '802' ) {
-        currentIcon.innerHTML = "<i class='fa-regular fa-cloud'></i>";
-    } else if (weather.weather[0].id >= '803') {
-        currentIcon.innerHTML = "<i class='fa-regular fa-clouds'></i>";
-    }
-
-
-
-
-    console.log(weather.weather[0].id)
+        currentIcon.innerHTML = "<i class='fas fa-smog'></i>";
+    } else if (weather.weather[0].id == '800') {
+        currentIcon.innerHTML = "<i class='fas fa-sun'></i>";
+    } else if (weather.weather[0].id >= '801' && weather.weather[0].id <= '810' ) {
+        currentIcon.innerHTML = "<i class='fas fa-cloud'></i>";
+    } 
+    console.log(weather.weather[0].id);
 
     var cityName = document.createElement('h3');
-    cityName.textContent = weather.name + ' (' + day.toDateString() + ') ' + currentIcon;
-    cityName.setAttribute('class', 'mb-4');
+    cityName.textContent = weather.name + ' (' + day.toDateString() + ') ';
+    cityName.setAttribute('class', 'mb-2');
     currentContainer.append(cityName);
+    currentContainer.append(currentIcon);
 
     var currentTemp = document.createElement('h5');
     currentTemp.textContent = 'Temp: ' + weather.main.temp + '°C';
