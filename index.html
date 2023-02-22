@@ -9,20 +9,20 @@
     <link rel="stylesheet" href="./assets/css/style.css">
     <title>Weather Dashboard</title>
 </head>
-<body class="text-bg-info container-body">
-    <header class="container-fluid text-center mb 5 p-3">
+<body class="text-bg-info container-body ">
+    <header class="container-fluid text-center p-3">
         <h1 class="h1">Weather Dashboard</h1>
     </header>
     <main class="text-bg-info">
-        <div class="row text-bg-info mx-3 first-row">
+        <div class="row flex-col">
             <div class="col-12 col-md-4 mt-5">
-                <h3 class="card-header text-uppercase text-center">Search By City</h3>
-                <form id="user-form" class="card-body col-12 col-md-4">
-                    <input name="cityname" id="cityname" type="text" autofocus="true" class="form-input mx-5 mb-3" placeholder="Enter city Name" />
-                    <button type="submit" class="btn btn-primary btn-block mx-5">Search</button>
+                <h3 class="card-header text-uppercase text-center mb-3">Search By City</h3>
+                <form id="user-form" class="card-body">
+                    <input name="cityname" id="cityname" type="text" autofocus="true" class="form-input" placeholder="Enter city Name" />
+                    <button type="submit" class="btn btn-primary btn-block mx-4">Search</button>
                 </form>
             </div>
-            <div class="col 12 col-md-8 col-lg-8 box " id="currentWeather">
+            <div class="col 12 col-md-8 box mx-0" id="currentWeather"></div>
         </div>
         <div class="row mt-3">   
             <div class="col-12 col-md-4 col-lg-4 text-center">
@@ -31,15 +31,9 @@
                     <li #="storedCities"></li>
                 </ul> 
             </div>
-            <div class="  col-12 col-md-8 col-lg-8 mx-0">
-                    <h3 class="text-center">5-Day Forcast</h3>
-                    <div class="flex-lg-row justify-content-between row text-bg-info">
-                        <div class="card text-bg-info" id="firstCard" style="width: 8rem"></div>
-                        <div class="card text-bg-info" id="secondCard" style="width: 8rem"></div>
-                        <div class="card text-bg-info" id="thirdCard" style="width: 8rem"></div>
-                        <div class="card text-bg-info" id="fourthCard" style="width: 8rem"></div>
-                        <div class="card text-bg-info" id="fifthCard" style="width: 8rem"></div>
-                    </div>
+            <div class="col-12 col-md-8 card-width">
+                <h3 class="text-center">5-Day Forcast</h3>
+                <div class="flex-lg-row justify-content-between row text-bg-info" id="forecastWeather"></div>
             </div>
         </div>
     </main>

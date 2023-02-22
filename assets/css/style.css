@@ -14,10 +14,21 @@ body {
     height: 200px;
     border: 2px solid black;
     border-radius: 5px;
-    
+    width: 65%;
 }
 
 .list {
     list-style: none;
 }
 
+.p {
+    font-size: .85rem;
+}
+
+.card-width {
+    width: 65%;
+}
+
+.card-style {
+    border-radius: 5px;
+}
