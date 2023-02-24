@@ -2,53 +2,47 @@
 var searchCityEl = document.querySelector('#user-form');
 var cityInputEl = document.querySelector('#cityname');
 var cityList = document.querySelector('#storedCities');
-var cityCounter = 0
-
 
 // Render city names for storage
 var renderCities = function (city) {
-    
-    // city = city.charAt(0).toUpperCase() + city.slice(1);
-    
-    console.log(city);
-
-    // if (name === storeCities) {
-    //     return;
-    // }
-    // else {
-    //    localStorage.setItem(name, cities) 
-    // }
-
-
-
+    cityList.innerHTML = '';
+    var cities = JSON.parse(localStorage.getItem('index')) || [];
+    for(var i= cities.length-1; i >=0; i--) {
+        var cityEl = document.createElement('button');
+        cityEl.classList.add('w-100', 'btn', 'btn-primary', 'mb-2')
+        cityEl.innerText = cities[i];
+        cityList.appendChild(cityEl);
+    }
 }
 
-// This function is upon launch and loads locally stored city names
-
-// var init = function () {
-//     var storedCities = JSON.parse(localStorage.getItem('cities'));
-
-//     if  (storedCities !==null) {
-//         cities = storedCities;
-//     }
-//     renderCities();
-// }
-
-// var storeCities = function() {
-//     localStorage.setItem('cities', JSON.stringify(cities))
-// }
-
-
+// Store city names into local storage
+var storeCities = function(city) {
+    var cities = JSON.parse(localStorage.getItem('index')) || [];
+    
+    for (var i = 0; i < cities.length; i ++ ) {
+        if (cities[i] === city) {
+            return
+        }
+    }
+    if (cities.length = 5){
+        
+    }
+    cities.push(city);
+    localStorage.setItem('index', JSON.stringify(cities));
+};
 
 // Search for a city and get the lat and long
 var formCityHandler = function(event) {
-  event.preventDefault();
-  var cityname = cityInputEl.value.trim();
-  cityname = cityname.charAt(0).toUpperCase() + cityname.slice(1);
+  
+    event.preventDefault();
+    var cityname = cityInputEl.value.trim();
+    cityname = cityname.charAt(0).toUpperCase() + cityname.slice(1);
     
   if (cityname) {
+    cityInputEl.value = '';
     getCurrentTemp(cityname);
     getFiveDayForecast(cityname);
+    storeCities(cityname);
     renderCities(cityname);
     
   }
@@ -164,7 +158,7 @@ var displayForecastWeather = function(forecast) {
         
         // Create cards to take the elements of the 5 day forecast
         var cardNew = document.createElement('div');
-        cardNew.classList = 'col-12 col-md-2 bg-secondary card-style';
+        cardNew.classList = 'col-12 col-md-2 bg-light card-style rounded-2';
         forecastContainer.appendChild(cardNew);
 
         // Extract required data for date element of card
@@ -218,5 +212,5 @@ var displayForecastWeather = function(forecast) {
         cardNew.appendChild(forecastHumidity);
     }
 }
-
+renderCities();
 searchCityEl.addEventListener("submit", formCityHandler);

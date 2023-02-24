@@ -22,13 +22,9 @@ body {
 }
 
 .p {
-    font-size: .85rem;
+    font-size: .8rem;
 }
 
-.card-width {
-    width: 65%;
-}
-
-.card-style {
+/* .card-style {
     border-radius: 5px;
-}
+} */

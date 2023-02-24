@@ -13,22 +13,22 @@
     <header class="container-fluid text-center p-3">
         <h1 class="h1">Weather Dashboard</h1>
     </header>
-    <main class="text-bg-info">
-        <div class="row flex-col">
-            <div class="col-12 col-md-4 mt-5">
+    <main class="container text-bg-info">
+        <div class="row justify-content-around">
+            <div class="col-md-4 mt-5">
                 <h3 class="card-header text-uppercase text-center mb-3">Search By City</h3>
-                <form id="user-form" class="card-body">
-                    <input name="cityname" id="cityname" type="text" autofocus="true" class="form-input" placeholder="Enter city Name" />
-                    <button type="submit" class="btn btn-primary btn-block mx-4">Search</button>
+                <form id="user-form" class="form-control text-bg-info">
+                    <input id="cityname" type="text" autofocus="true" class="form-input w-100" placeholder="Enter City Name" />
+                    <button type="submit" class="btn btn-primary w-100 my-2" id="city-submit">Search</button>
                 </form>
             </div>
-            <div class="col 12 col-md-8 box mx-0" id="currentWeather"></div>
+            <div class="col 12 col-md-8 box" id="currentWeather"></div>
         </div>
         <div class="row mt-3">   
             <div class="col-12 col-md-4 col-lg-4 text-center">
                 <h3>City List</h3>
-                <ul class="list">
-                    <li #="storedCities"></li>
+                <ul class="list" id="storedCities">
+                    
                 </ul> 
             </div>
             <div class="col-12 col-md-8 card-width">
@@ -38,6 +38,7 @@
         </div>
     </main>
     
-    <script src="./assets/js/script.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
+    <script type="text/javascript" src="./assets/js/script.js"></script>
 </body>
 </html>
