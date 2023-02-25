@@ -1,17 +1,19 @@
 // Varibles requied for the app
 var searchCityEl = document.querySelector('#user-form');
 var cityInputEl = document.querySelector('#cityname');
-var cityList = document.querySelector('#storedCities');
+var cityListEl = document.querySelector('#storedCities');
+var currentWeatherEl = document.querySelector('#currentWeather');
+var forecastWeatherEl = document.querySelector('#forecastWeather');
 
 // Render city names for storage
 var renderCities = function (city) {
-    cityList.innerHTML = '';
+    cityListEl.innerHTML = '';
     var cities = JSON.parse(localStorage.getItem('index')) || [];
     for(var i= cities.length-1; i >=0; i--) {
         var cityEl = document.createElement('button');
         cityEl.classList.add('w-100', 'btn', 'btn-primary', 'mb-2')
         cityEl.innerText = cities[i];
-        cityList.appendChild(cityEl);
+        cityListEl.appendChild(cityEl);
     }
 }
 
@@ -24,8 +26,9 @@ var storeCities = function(city) {
             return
         }
     }
-    if (cities.length = 5){
-        
+    if (cities.length >= 5){
+        cities.shift();
+        console.log(cities);
     }
     cities.push(city);
     localStorage.setItem('index', JSON.stringify(cities));
@@ -38,17 +41,15 @@ var formCityHandler = function(event) {
     var cityname = cityInputEl.value.trim();
     cityname = cityname.charAt(0).toUpperCase() + cityname.slice(1);
     
-  if (cityname) {
-    cityInputEl.value = '';
-    getCurrentTemp(cityname);
-    getFiveDayForecast(cityname);
-    storeCities(cityname);
-    renderCities(cityname);
-    
-  }
-  else {
-    alert('The city name you entered is not valid. Please try again');
-  }
+    if (cityname) {
+        cityInputEl.value = '';
+        getCurrentTemp(cityname);
+        getFiveDayForecast(cityname);
+        storeCities(cityname);
+        renderCities(cityname);
+    } else {
+        alert('The city name you entered is not valid. Please try again');
+    }
 }
 
 // Fetches the data for the current day from the Openweather API
@@ -57,20 +58,18 @@ var getCurrentTemp = function(city) {
     
     fetch(curApiUrl)
         .then(function (response) {
-          if (response.ok) {
-            console.log(response);
-            response.json().then(function (data) {
-              console.log(data);
-              displayCurrentWeather(data);  
-            });
-        } else {
-            alert('Error: ' + response.statusText);
-        }
+            if (response.ok) {
+                console.log(response);
+                response.json().then(function (data) {
+                displayCurrentWeather(data);  
+                });
+            } else {
+                alert('Error: ' + response.statusText);
+            }
         })
         .catch(function (error) {
             alert('Unable to connect to OpenWeather');
         });
-      
 };
 
 // Renders data and creates the elements to display the current day information
@@ -213,4 +212,14 @@ var displayForecastWeather = function(forecast) {
     }
 }
 renderCities();
+
 searchCityEl.addEventListener("submit", formCityHandler);
+
+cityListEl.addEventListener('click', function(event) {
+    var element =event.target;
+    element = element.innerHTML;
+    forecastWeatherEl.innerHTML = '';
+    currentWeatherEl.innerHTML = '';
+    getCurrentTemp(element);
+    getFiveDayForecast(element);
+})
