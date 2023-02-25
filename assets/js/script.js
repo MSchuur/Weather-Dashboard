@@ -28,7 +28,6 @@ var storeCities = function(city) {
     }
     if (cities.length >= 5){
         cities.shift();
-        console.log(cities);
     }
     cities.push(city);
     localStorage.setItem('index', JSON.stringify(cities));
@@ -38,6 +37,8 @@ var storeCities = function(city) {
 var formCityHandler = function(event) {
   
     event.preventDefault();
+    currentWeatherEl.innerHTML = '';
+    forecastWeatherEl.innerHTML = '';
     var cityname = cityInputEl.value.trim();
     cityname = cityname.charAt(0).toUpperCase() + cityname.slice(1);
     
@@ -45,8 +46,6 @@ var formCityHandler = function(event) {
         cityInputEl.value = '';
         getCurrentTemp(cityname);
         getFiveDayForecast(cityname);
-        storeCities(cityname);
-        renderCities(cityname);
     } else {
         alert('The city name you entered is not valid. Please try again');
     }
@@ -61,10 +60,13 @@ var getCurrentTemp = function(city) {
             if (response.ok) {
                 console.log(response);
                 response.json().then(function (data) {
-                displayCurrentWeather(data);  
+                displayCurrentWeather(data);
+                storeCities(city);
+                renderCities(city);  
                 });
             } else {
                 alert('Error: ' + response.statusText);
+                return;
             }
         })
         .catch(function (error) {
@@ -137,8 +139,9 @@ var getFiveDayForecast = function(city) {
               console.log(data);
               displayForecastWeather(data);  
             });
-        } else {
-            alert('Error: ' + response.statusText);
+        // } else {
+        //     alert('Error: ' + response.statusText);
+        //     return
         }
         })
         .catch(function (error) {
