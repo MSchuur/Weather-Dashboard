@@ -6,7 +6,7 @@ This webpage is a weather dashboard that will allow the user to view the current
 
 Once an city name is entered it will display the current and 5 day forecast for the city selected. As more cities are entered the recently visited cities list will populate with the last 5 cities view with the lastest visited city at the top of the list. The information displayed for the current day will be the city name with the current date, the weather condition icon, the current tempurature, the current humidity and the current wind speed. The 5 day forecast will be displayed showing the dates, an icon representing the weather conditions, the temupature, the humidity and the wind speed for the specific day. If a recently visited city is clicked on it will display the current and the five day forecast for that city. The current weather and 5 day forecast will be displayed as per the image below:
 
-
+<img width="1280" alt="Fullpage" src="https://user-images.githubusercontent.com/120262482/221386297-fd646d73-7da5-457b-963a-a8943ce47389.png">
 
 ## Installation
 
