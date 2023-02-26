@@ -4,8 +4,10 @@ var cityInputEl = document.querySelector('#cityname');
 var cityListEl = document.querySelector('#storedCities');
 var currentWeatherEl = document.querySelector('#currentWeather');
 var forecastWeatherEl = document.querySelector('#forecastWeather');
+var forecastContainer = document.querySelector('#forecastWeather');
+var h3El = document.querySelector('#five-day-forecast');
 
-// Render city names for storage
+// Render city names if any form local storage into buttons
 var renderCities = function (city) {
     cityListEl.innerHTML = '';
     var cities = JSON.parse(localStorage.getItem('index')) || [];
@@ -33,7 +35,7 @@ var storeCities = function(city) {
     localStorage.setItem('index', JSON.stringify(cities));
 };
 
-// Search for a city and get the lat and long
+// On the submit from the search city form checks to see if a name is submitted
 var formCityHandler = function(event) {
   
     event.preventDefault();
@@ -51,7 +53,7 @@ var formCityHandler = function(event) {
     }
 }
 
-// Fetches the data for the current day from the Openweather API
+// Takes the checked inputted city name and uses it to get the data for the current day from the Openweather API
 var getCurrentTemp = function(city) {
     var curApiUrl = 'http://api.openweathermap.org/data/2.5/weather?q=' + city + '&units=metric&appid=46d9562c80440e2c512be53d86040084';
     
@@ -78,6 +80,7 @@ var getCurrentTemp = function(city) {
 function displayCurrentWeather(weather) {
 
     var currentContainer = document.querySelector('#currentWeather');
+    currentContainer.classList.add('border', 'border-2', 'border-dark', 'rounded');
     var dt = weather.dt;
     var day = new Date(dt*1000);
 
@@ -127,22 +130,20 @@ function displayCurrentWeather(weather) {
     currentHumidity.setAttribute('class', 'mb-4');
     currentContainer.append(currentHumidity);
 }
-// Fetches the data for the 5 day forecast from the Openweather API 
+// Takes the checked inputted city name and uses it to get the data for the five day forecast from the Openweather API
 var getFiveDayForecast = function(city) {
     
     var forecastApiUrl = 'http://api.openweathermap.org/data/2.5/forecast?q=' + city + '&units=metric&appid=46d9562c80440e2c512be53d86040084';
 
     fetch(forecastApiUrl)
         .then(function (response) {
-          if (response.ok) {
-            response.json().then(function (data) {
-              console.log(data);
-              displayForecastWeather(data);  
-            });
-        // } else {
-        //     alert('Error: ' + response.statusText);
-        //     return
-        }
+
+            if (response.ok) {
+                response.json().then(function (data) {
+                console.log(data);
+                displayForecastWeather(data);  
+                });
+            }
         })
         .catch(function (error) {
             alert('Unable to connect to OpenWeather');
@@ -155,12 +156,12 @@ var displayForecastWeather = function(forecast) {
     // Loop through data for 5 day forecast to populate card
     for (var i = 7; i <= 39; i = i + 8) {
         
-        // Create container for forecast cards
-        var forecastContainer = document.querySelector('#forecastWeather');
+        // Display the H3 title on the page
+        h3El.classList.remove('hide');
         
         // Create cards to take the elements of the 5 day forecast
         var cardNew = document.createElement('div');
-        cardNew.classList = 'col-12 col-md-2 bg-light card-style rounded-2';
+        cardNew.classList = 'col-12 col-md-2 bg-light  rounded-2';
         forecastContainer.appendChild(cardNew);
 
         // Extract required data for date element of card
@@ -214,10 +215,14 @@ var displayForecastWeather = function(forecast) {
         cardNew.appendChild(forecastHumidity);
     }
 }
+
+// Will olad the recently visited city once the page loads
 renderCities();
 
+// Listens the the submission of a name from the form
 searchCityEl.addEventListener("submit", formCityHandler);
 
+// Gives the name from the Recently Visited Cites list once clicked
 cityListEl.addEventListener('click', function(event) {
     var element =event.target;
     element = element.innerHTML;
@@ -225,4 +230,4 @@ cityListEl.addEventListener('click', function(event) {
     currentWeatherEl.innerHTML = '';
     getCurrentTemp(element);
     getFiveDayForecast(element);
-})
+});

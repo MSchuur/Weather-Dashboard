@@ -22,15 +22,15 @@
                     <button type="submit" class="btn btn-primary w-100 my-2" id="city-submit">Search</button>
                 </form>
             </div>
-            <div class="col 12 col-md-8 box" id="currentWeather"></div>
+            <div class="col 12 col-md-8" id="currentWeather"></div>
         </div>
-        <div class="row mt-3">   
+        <div class="row justify-content-around mt-3">   
             <div class="col-12 col-md-4 col-lg-4 text-center ">
-                <h3>City List</h3>
-                <ul class="list" id="storedCities"></ul> 
+                <h3>Recently Visited Cities</h3>
+                <ul class="list p-2" id="storedCities"></ul> 
             </div>
             <div class="col-12 col-md-8 col-sm-3 card-width">
-                <h3 class="text-center" id="five-day-forecast">5-Day Forcast</h3>
+                <h3 class="text-center hide" id="five-day-forecast">5-Day Forcast</h3>
                 <div class="flex-lg-row justify-content-between row text-bg-info" id="forecastWeather"></div>
             </div>
         </div>
