@@ -60,7 +60,6 @@ var getCurrentTemp = function(city) {
     fetch(curApiUrl)
         .then(function (response) {
             if (response.ok) {
-                console.log(response);
                 response.json().then(function (data) {
                 displayCurrentWeather(data);
                 storeCities(city);
@@ -140,7 +139,6 @@ var getFiveDayForecast = function(city) {
 
             if (response.ok) {
                 response.json().then(function (data) {
-                console.log(data);
                 displayForecastWeather(data);  
                 });
             }
@@ -161,7 +159,8 @@ var displayForecastWeather = function(forecast) {
         
         // Create cards to take the elements of the 5 day forecast
         var cardNew = document.createElement('div');
-        cardNew.classList = 'col-12 col-md-2 bg-light  rounded-2';
+        cardNew.classList = 'col-12 col-md-2 bg-light rounded-2';
+        cardNew.setAttribute('style', 'width: 6rem');
         forecastContainer.appendChild(cardNew);
 
         // Extract required data for date element of card
