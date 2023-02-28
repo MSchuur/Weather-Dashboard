@@ -55,7 +55,7 @@ var formCityHandler = function(event) {
 
 // Takes the checked inputted city name and uses it to get the data for the current day from the Openweather API
 var getCurrentTemp = function(city) {
-    var curApiUrl = 'http://api.openweathermap.org/data/2.5/weather?q=' + city + '&units=metric&appid=46d9562c80440e2c512be53d86040084';
+    var curApiUrl = 'https://api.openweathermap.org/data/2.5/weather?q=' + city + '&units=metric&appid=46d9562c80440e2c512be53d86040084';
     
     fetch(curApiUrl)
         .then(function (response) {
@@ -133,7 +133,7 @@ function displayCurrentWeather(weather) {
 // Takes the checked inputted city name and uses it to get the data for the five day forecast from the Openweather API
 var getFiveDayForecast = function(city) {
     
-    var forecastApiUrl = 'http://api.openweathermap.org/data/2.5/forecast?q=' + city + '&units=metric&appid=46d9562c80440e2c512be53d86040084';
+    var forecastApiUrl = 'https://api.openweathermap.org/data/2.5/forecast?q=' + city + '&units=metric&appid=46d9562c80440e2c512be53d86040084';
 
     fetch(forecastApiUrl)
         .then(function (response) {
